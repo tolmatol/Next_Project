@@ -82,12 +82,12 @@ export const loginAction = async (formData: FormData) => {
     const user = response.data[0];
 
     if (!user) {
-      return { error: "Invalid Credentials" }; // ✅ return instead of throw
+      throw new Error("Invalid Credentials");
+    }
 
-     }
-await setSession({name: user.name, email:user.email, id:user.id})
+    await setSession({ name: user.name, email: user.email, id: user.id });
   } catch (error) {
-    return { error: "Something went wrong" };
+    throw new Error("Something went wrong");
   }
 
   redirect("/contact"); // only runs if login success
