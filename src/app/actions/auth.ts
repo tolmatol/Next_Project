@@ -68,7 +68,7 @@ import axios from "axios";
 import { redirect } from "next/navigation";
 import { deleteSession, setSession } from "../_lib/session";
 
-const API_URL = "http://localhost:3001";
+const API_URL = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
 export const loginAction = async (formData: FormData) => {
   try {
